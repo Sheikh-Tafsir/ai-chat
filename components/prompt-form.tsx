@@ -12,6 +12,7 @@ import {
   TooltipTrigger
 } from '@/components/ui/tooltip'
 import { IconArrowElbow, IconPlus } from '@/components/ui/icons'
+import MicButton from '@/components/MicButton'
 
 export interface PromptProps
   extends Pick<UseChatHelpers, 'input' | 'setInput'> {
@@ -74,6 +75,7 @@ export function PromptForm({
           className="min-h-[60px] w-full resize-none bg-transparent px-4 py-[1.3rem] focus-within:outline-none sm:text-sm"
         />
         <div className="absolute right-0 top-4 sm:right-4">
+          <MicButton setInput={setInput} />
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
