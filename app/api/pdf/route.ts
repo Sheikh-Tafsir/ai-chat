@@ -1,33 +1,19 @@
+import { prisma } from '@/db'
 import { NextResponse } from 'next/server'
-import cloudinary from 'cloudinary'
 
-// @ts-ignore
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_NAME,
-  api_key: process.env.CLOUDINARY_KEY,
-  api_secret: process.env.CLOUDINARY_SECRET
-})
+export async function GET() {
+  const data = await prisma.pdfStore.findMany()
+  return NextResponse.json({ data }, { status: 200 })
+}
 
 export async function POST(req: Request) {
-  const data = await req.formData()
-  const image = data.get('image')
-  let detectedText = 'Failed to detect text'
-  await cloudinary.v2.uploader.upload(
-    // @ts-ignore
-    image,
-    { ocr: 'adv_ocr' },
-    (error, result) => {
-      if (error) return NextResponse.json({ error: 'ERROR IN SERVER' })
+  const data = await req.json()
+  const { title, url } = data
+  await prisma.pdfStore.create({
+    //@ts-ignore
+    title,
+    url
+  })
 
-      const { textAnnotations } = result!.info.ocr.adv_ocr.data[0]
-
-      const extractedText = textAnnotations
-        .map((anno, i) => i > 0 && anno.description.replace(/[^0-9a-z]/gi, ''))
-        .filter(entry => typeof entry === 'string')
-        .join(' ')
-
-      detectedText = extractedText
-    }
-  )
-  return NextResponse.json({ data: detectedText }, { status: 200 })
+  return NextResponse.json({ msg: 'added sccessfully' }, { status: 200 })
 }
