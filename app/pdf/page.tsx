@@ -3,7 +3,7 @@
 import { Button, buttonVariants } from '@/components/ui/button'
 import { useState } from 'react'
 
-export default function OCR() {
+export default function ShowPdf() {
   const [imageSrc, setImageSrc] = useState<any>()
   const [btnDisabled, setBtnDisabled] = useState(true)
 
@@ -30,8 +30,8 @@ export default function OCR() {
 
     try {
       const formData = new FormData()
-      formData.append('image', imageSrc)
-      let data: any = await fetch('/api/ocr', {
+      formData.append('pdf', imageSrc)
+      let data: any = await fetch('/api/pdf', {
         method: 'POST',
         body: formData
       })
@@ -60,7 +60,7 @@ export default function OCR() {
             className={buttonVariants() + ' ' + 'bg-green-500'}
           >
             <input type="file" name="file" id="file" className="hidden" />
-            Select image
+            Select Pdf
           </label>
         </div>
       </form>

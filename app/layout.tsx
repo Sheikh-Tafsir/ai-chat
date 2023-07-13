@@ -3,11 +3,11 @@ import { Metadata } from 'next'
 import { Toaster } from 'react-hot-toast'
 
 import '@/app/globals.css'
+import { Header } from '@/components/header'
+import { Providers } from '@/components/providers'
+import { TailwindIndicator } from '@/components/tailwind-indicator'
 import { fontMono, fontSans } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
-import { TailwindIndicator } from '@/components/tailwind-indicator'
-import { Providers } from '@/components/providers'
-import { Header } from '@/components/header'
 import { ClerkProvider } from '@clerk/nextjs'
 import { dark } from '@clerk/themes'
 
@@ -49,7 +49,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           )}
         >
           <Toaster />
-          <Providers attribute="class" defaultTheme="system" enableSystem>
+          <Providers attribute="class" defaultTheme="dark">
             <div className="flex flex-col min-h-screen">
               {/* @ts-ignore */}
               <Header />
