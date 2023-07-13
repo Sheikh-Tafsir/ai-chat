@@ -12,16 +12,17 @@ import SpeechRecognition, {
 export default function MicButton({ setInput }: { setInput: any }) {
   const [clicked, setClicked] = useState(false)
 
-  const { transcript } = useSpeechRecognition()
+  let { transcript, resetTranscript } = useSpeechRecognition()
 
   const onClick = () => {
     if (clicked) {
-      SpeechRecognition.stopListening()
       setInput(transcript)
+      SpeechRecognition.stopListening()
     } else {
       SpeechRecognition.startListening({ continuous: true, language: 'en-IN' })
     }
     setClicked(click => !click)
+    resetTranscript()
   }
 
   return (
