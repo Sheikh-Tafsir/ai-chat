@@ -25,18 +25,20 @@ export function ChatMessageActions({
   }
 
   return (
-    <div
-      className={cn(
-        'flex flex-col items-center justify-end transition-opacity group-hover:opacity-100 md:absolute md:-right-10 md:-top-2 md:opacity-0',
-        className
-      )}
-      {...props}
-    >
-      <Button variant="ghost" size="icon" onClick={onCopy}>
-        {isCopied ? <IconCheck /> : <IconCopy />}
-        <span className="sr-only">Copy message</span>
-      </Button>
-      <SpeakerButton text={message.content} />
+    <div>
+      <div
+        className={cn(
+          'flex flex-col items-center justify-end transition-opacity group-hover:opacity-100 md:absolute md:-right-10 md:-top-2 md:opacity-0',
+          className
+        )}
+        {...props}
+      >
+        <Button variant="ghost" size="icon" onClick={onCopy}>
+          {isCopied ? <IconCheck /> : <IconCopy />}
+          <span className="sr-only">Copy message</span>
+        </Button>
+        <SpeakerButton text={message.content} />
+      </div>
     </div>
   )
 }
