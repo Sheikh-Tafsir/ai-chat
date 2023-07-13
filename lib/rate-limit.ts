@@ -1,5 +1,4 @@
 import { LRUCache } from 'lru-cache'
-import type { NextApiResponse } from 'next'
 
 type Options = {
   uniqueTokenPerInterval?: number
@@ -13,7 +12,7 @@ export default function rateLimit(options?: Options) {
   })
 
   return {
-    check: (res: NextApiResponse, limit: number, token: string) => {
+    check: (limit: number, token: string) => {
       const tokenCount = (tokenCache.get(token) as number[]) || [0]
       if (tokenCount[0] === 0) {
         tokenCache.set(token, tokenCount)
