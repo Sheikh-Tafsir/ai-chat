@@ -65,7 +65,7 @@ export async function removeChat({ id, path }: { id: string; path: string }) {
 export async function clearChats() {
   const { userId } = auth()
 
-  if (userId) {
+  if (!userId) {
     return {
       error: 'Unauthorized'
     }
