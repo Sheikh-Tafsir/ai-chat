@@ -8,11 +8,13 @@ export async function GET() {
 
 export async function POST(req: Request) {
   const data = await req.json()
-  const { title, url } = data
+  const { title, content } = data
   await prisma.pdfStore.create({
-    //@ts-ignore
-    title,
-    url
+    data: {
+      title,
+      //@ts-ignore
+      content
+    }
   })
 
   return NextResponse.json({ msg: 'added sccessfully' }, { status: 200 })
