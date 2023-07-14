@@ -48,7 +48,7 @@ export async function Header() {
           <Button className="hover:bg-green-600">
             <Link
               target="_blank"
-              href="https://funny-cajeta-8ff3de.netlify.app/pdfplatform"
+              href="https://ai-renegade.netlify.app/pdfplatform"
             >
               Read AI Generated PDF's
             </Link>
