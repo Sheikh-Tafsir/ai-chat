@@ -1,6 +1,7 @@
 # Overview
 
 - This is an AI chatbot built with next 13 app directiory with server actions enabled.
+- [Hugging Face](https://huggingface.co/) API is used for generating outputs from an LLM model. 
 - Along with regular text prompts, voice prompts are also supported.
 - Clerk API is used for authentication and authorization providing a lot of security features like sign out specific sessions, sign out from all devices, and the app can also be configured to authenticate with different social systems like facebook, github etc.
 - Cloudinary is used for performing OCR
