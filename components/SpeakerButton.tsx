@@ -18,7 +18,7 @@ const SpeakerButton = ({ text }: { text: string }) => {
   }
 
   return (
-    <Button type="button" variant="outline"  onClick={onClick}>
+    <Button type="button" variant="outline" onClick={onClick}>
       <IconSpeaker />
     </Button>
   )

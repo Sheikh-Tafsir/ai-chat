@@ -65,7 +65,7 @@ export default function OCR({ setInput }) {
         <div className="float-right">
           <label
             htmlFor="file"
-            className={buttonVariants() + ' ' + 'bg-green-500'}
+            className={buttonVariants() + ' ' + 'hover:bg-green-500'}
           >
             <input type="file" name="file" id="file" className="hidden" />
             Select image
