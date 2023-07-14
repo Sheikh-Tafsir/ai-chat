@@ -1,3 +1,5 @@
+import rateLimit from '@/lib/rate-limit'
+
 import { kv } from '@vercel/kv'
 /* import { OpenAIStream, StreamingTextResponse } from 'ai' */
 /* import { Configuration, OpenAIApi } from 'openai-edge' */
@@ -69,6 +71,7 @@ import { nanoid } from '@/lib/utils'
 
 import { HfInference } from '@huggingface/inference'
 import { HuggingFaceStream, StreamingTextResponse } from 'ai'
+import { NextResponse } from 'next/server'
 
 // Create a new Hugging Face Inference instance
 const Hf = new HfInference(process.env.HUGGINGFACE_API_KEY)
@@ -95,7 +98,17 @@ function buildOpenAssistantPrompt(
   )
 }
 
+const limiter = rateLimit({
+  interval: 60 * 1000, // 60 seconds
+  uniqueTokenPerInterval: 500 // Max 500 users per second
+})
+
 export async function POST(req: Request) {
+  const exceeded = limiter.check(10, 'CACHE_TOKEN') // 10 requests per minute
+  if (exceeded) {
+    return NextResponse.json({ error: 'Rate Limit Exceeded' })
+  }
+
   // Extract the `messages` from the body of the request
   const json = await req.json()
   const { messages } = json
