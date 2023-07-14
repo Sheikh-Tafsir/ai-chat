@@ -8,4 +8,4 @@
 - Browsers built in SpeechSynthesis API is used for voice inputs
 - The app also exposes the ocr api for authenticated users
 - Searching for PDFS, and adding new pdfs are also supported.
-- AI Generated PDF collection is available in [here](https://ai-renegade.netlify.app/pdfplatform).
+- AI Generated PDF collection is available in [here](https://ai-renegade.netlify.app/pdfplatform) and the code for that is hosted [here](https://github.com/Sheikh-Tafsir/chatRenegadePdfPlatform)
